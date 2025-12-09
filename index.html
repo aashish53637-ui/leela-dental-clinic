@@ -769,3 +769,26 @@
 
 </body>
 </html>
+; }
+          else {
+            const res = await fetch(webhook, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+            if(res && res.ok){ form.reset(); showPopup(); } else { alert('Server error'); }
+          }
+        }catch(err){
+          console.error(err);
+          // If fetch fails due to CORS/network, offer simulated success if user enabled it
+          if(simulate && simulate.checked){ form.reset(); showPopup(); }
+          else alert('Network error');
+        }
+
+        if(submitBtn) submitBtn.disabled = false;
+      });
+    })();
+  </script>
+
+  <footer style="text-align:center;margin:32px 0;color:var(--muted);">
+    © 2025 Leela Dental Clinic
+  </footer>
+
+</body>
+</html>
